@@ -20,10 +20,11 @@ public class BinaryTree {
     }
 
     public List<Integer> printTreeRightNode(TreeNode head){
-        if()
+
         List<Integer> list = new ArrayList<>();
 
 
+        return list;
     }
 
 
