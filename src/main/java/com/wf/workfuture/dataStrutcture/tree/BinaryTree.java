@@ -19,8 +19,10 @@ public class BinaryTree {
         }
     }
 
-    public List<Integer> printTreeRightNode(TreeNode head){
-
+    public List<Integer> printTreeRightNode(TreeNode head) throws Exception{
+        if(head != null) {
+            throw new Exception("输入的树节点为空");
+        }
         List<Integer> list = new ArrayList<>();
 
         return list;
