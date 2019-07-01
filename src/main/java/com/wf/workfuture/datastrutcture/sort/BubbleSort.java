@@ -1,4 +1,4 @@
-package com.wf.workfuture.dataStrutcture.sort;
+package com.wf.workfuture.datastrutcture.sort;
 
 import java.util.Scanner;
 
