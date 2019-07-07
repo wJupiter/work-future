@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created by wangfeng 10:09 PM 2019/6/24
@@ -114,6 +115,164 @@ public class BinaryTree {
         }
     }
 
+    /**
+     * S型遍历二叉树
+     * @param root
+     */
+    public static void levelOrder_S(TreeNode root){
+        if(root != null) {
+            TreeNode t = root;
+            Stack<TreeNode> stack1 = new Stack<>();
+            Stack<TreeNode> stack2 = new Stack<>();
+            stack1.push(t);
+            while(!stack1.isEmpty() || !stack2.isEmpty()) {
+                while(!stack1.isEmpty()) {
+                    TreeNode q = stack1.pop();
+                    System.out.print(q.data + " ");
+                    if(q.rightChild != null) {
+                        stack1.push(q.rightChild);
+                    }
+                    if(q.leftChild != null) {
+                        stack1.push(q.leftChild);
+                    }
+                }
+                while(!stack2.isEmpty()) {
+                    TreeNode p = stack2.pop();
+                    System.out.print(p.data + " ");
+                    if(p.leftChild != null) {
+                        stack2.push(p.leftChild);
+                    }
+                    if(p.rightChild != null) {
+                        stack2.push(p.rightChild);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 反S型遍历二叉树
+     * @param root
+     */
+    public static void levelOrder_RS(TreeNode root){
+        if(root != null) {
+            TreeNode t = root;
+            Stack<TreeNode> stack1 = new Stack<>();
+            Stack<TreeNode> stack2 = new Stack<>();
+            stack1.push(t);
+            while(!stack1.isEmpty() || !stack2.isEmpty()) {
+                while(!stack1.isEmpty()) {
+                    TreeNode p = stack1.pop();
+                    System.out.print(p.data + " ");
+                    if(p.leftChild != null) {
+                        stack2.push(p.leftChild);
+                    }
+                    if(p.rightChild != null) {
+                        stack2.push(p.rightChild);
+                    }
+                }
+
+                while(!stack2.isEmpty()) {
+                    TreeNode q = stack2.pop();
+                    System.out.print(q.data + " ");
+                    if(q.rightChild != null) {
+                        stack1.push(q.rightChild);
+                    }
+                    if(q.leftChild != null) {
+                        stack1.push(q.leftChild);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * 二叉树层次便利变种
+     * @param root
+     * @return List<List<Integer>>
+     */
+    public static List<List<Integer>> levelOrderList(TreeNode root) {
+        List<List<Integer>> list = new ArrayList<>();
+
+        if(root != null) {
+            TreeNode t = root;
+            Queue<TreeNode> queue1 = new LinkedList<>();
+            Queue<TreeNode> queue2 = new LinkedList<>();
+            queue1.add(t);
+
+            while(!queue1.isEmpty()){
+
+                List<Integer> list1 = new ArrayList<>();
+                while(!queue1.isEmpty()) {
+
+                    TreeNode p = queue1.poll();
+                    list1.add((Integer) p.data);
+
+                    if(p.leftChild != null) {
+                        queue2.add(p.leftChild);
+                    }
+                    if(p.rightChild != null) {
+                        queue2.add(p.rightChild);
+                    }
+                }
+                list.add(list1);
+                if(queue1.isEmpty() && queue2.isEmpty()) {
+                    queue1 = queue2;
+                    queue2.clear();
+                }
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 打印二叉树每层最右边的节点
+     * @param root
+     * @return List<T> list
+     */
+    public List<Integer> printTreeRightNode(TreeNode root) {
+        if(root != null) {
+            throw new RuntimeException("输入的树节点为空");
+        }
+        List<Integer> list = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        //第一层入队列的节点数目
+        int p = 1;
+        //第二层入队列的节点数目
+        int q = 0;
+        while(!queue.isEmpty()){
+
+            while(p > 0) {
+                TreeNode treeNode;
+                if(p == 1 ){
+                    treeNode = queue.poll();
+                    list.add((Integer) treeNode.data);
+                    p--;
+                } else {
+                    treeNode = queue.poll();
+                    p--;
+                }
+                //如果左孩子存在则添加左孩子
+                if(treeNode.leftChild != null) {
+                    queue.add(treeNode.leftChild);
+                    q++;
+                }
+                //如果右孩子存在则添加右孩子
+                if(treeNode.rightChild != null){
+                    queue.add(treeNode.rightChild);
+                    q++;
+                }
+            }
+            if(p == 0 && q != 0) {
+                p = q;
+                q = 0;
+            }
+        }
+        return list;
+    }
+
+
     static int maxValue = 0;
 
     /**
@@ -140,60 +299,7 @@ public class BinaryTree {
         return maxValue;
     }
 
-    /**
-     //     * 打印二叉树每层最右边的节点
-     //     * @param head
-     //     * @return List<T> list
-     //     */
-    public List<Integer> printTreeRightNode(TreeNode root) {
-
-
-        List<Integer> list = new ArrayList<>();
-        return list;
-    }
-//    /**
-//     * 打印二叉树每层最右边的节点
-//     * @param head
-//     * @return List<T> list
-//     */
-//    public List<Integer> printTreeRightNode(TreeNode head) {
-//        if(head != null) {
-//            throw new RuntimeException("输入的树节点为空");
-//        }
-//        List<Integer> list = new ArrayList<>();
-//        Queue<TreeNode> queue = new ArrayDeque<>();
-//        queue.add(head);
-//        //设置一层的开始
-//        int start = 0;
-//        //设置一层的结束
-//        int end = 1;
-//        while(!queue.isEmpty()){
-//            TreeNode treeNode = queue.poll();
-//            start++;
-//
-//            //如果左孩子存在则添加左孩子
-//            if(treeNode.leftChild != null) {
-//                queue.add(treeNode.leftChild);
-//            }
-//            //如果右孩子存在则添加右孩子
-//            if(treeNode.rightChild != null){
-//                queue.add(treeNode.rightChild);
-//            }
-//
-//            //当到达末尾时
-//            if(start == end) {
-//                start = 0;
-//                //第一层结束了
-//                end = queue.size();
-//            }
-//
-//        }
-//        return list;
-//    }
-
-
     public static void main(String[] args){
-
 
         // 创建一棵二叉树
         TreeNode treeNode = create();
