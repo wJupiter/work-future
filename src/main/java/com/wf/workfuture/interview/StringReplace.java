@@ -3,6 +3,8 @@ package com.wf.workfuture.interview;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 /**
  * Created by wangfeng 11:52 AM 2019/4/18
@@ -30,7 +32,9 @@ public class StringReplace {
      * @return
      */
     public static String stringReplace(String str, Map<String, String> map){
-        if((str == null && str.length() < 0) || (map ==null && map.isEmpty())){
+
+        boolean isIllegal = StringUtils.isEmpty(str) || (CollectionUtils.isEmpty(map));
+        if(isIllegal){
             return "Param is not illegal";
         }
         String tempStr = str;
