@@ -7,9 +7,9 @@ import java.io.File;
  *
  * this is a class that create directory
  **/
-public class CreateDir {
+public class DirCreate {
     public static void main(String args[]) {
-        String dirname = "/tmp/user/java/bin";
+        String dirname = "/tmp/test/java/bin";
         File d = new File(dirname);
         // 现在创建目录
         d.mkdirs();
