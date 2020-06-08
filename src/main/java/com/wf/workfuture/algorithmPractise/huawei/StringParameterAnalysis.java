@@ -2,7 +2,6 @@ package com.wf.workfuture.algorithmPractise.huawei;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import sun.tools.jstat.Scale;
 
 /**
  * Created by wangfeng 10:47 2020/6/2 字符串解析
