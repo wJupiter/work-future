@@ -5,4 +5,8 @@ package com.wf.workfuture.redis;
  **/
 public class RedisUtil {
 
+    /**
+     * 分布式锁第一种写法
+     * setnx
+     */
 }
