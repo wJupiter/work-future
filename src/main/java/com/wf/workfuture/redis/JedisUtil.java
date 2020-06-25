@@ -13,5 +13,4 @@ public class JedisUtil {
         System.out.println(jedis.ping());
     }
 
-
 }

@@ -58,7 +58,7 @@ public class BinarySearch {
         while(l <= r) {
             int middle = l + (r - 1) / 2;
             if( key <= array[middle]){
-                r = middle -1;
+                r = middle - 1;
             } else {
                 l = middle + 1;
             }
