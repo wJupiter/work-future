@@ -71,4 +71,32 @@ public class BinarySearch {
         }
     }
 
+    /**
+     * 二分查找，最右匹配，命中返回index，否则返回-1。比如：[1,2,3,4,4,4,6,8], 查找4，返回index为5。（非递归模式）
+     * @param nums
+     * @param k
+     * @return
+     */
+    public static int rightBinarySearch(int[] nums, int k){
+        if(nums == null || nums.length == 0 ) {
+            return -1;
+        }
+        int left = 0, right = nums.length - 1;
+        while(left <= right) {
+            int middle = left + (right - left)/2;
+            if(nums[middle] == k) {
+                int index = middle;
+                while(index <= right && nums[index] == k){
+                    index++;
+                }
+                return --index;
+            } else if(nums[middle] < k){
+                left = middle + 1;
+            } else {
+                right = middle - 1;
+            }
+        }
+        return -1;
+    }
+
 }

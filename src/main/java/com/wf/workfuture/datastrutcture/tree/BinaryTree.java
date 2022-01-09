@@ -127,6 +127,10 @@ public class BinaryTree {
             stack1.push(t);
             while(!stack1.isEmpty() || !stack2.isEmpty()) {
                 while(!stack1.isEmpty()) {
+
+
+
+
                     TreeNode q = stack1.pop();
                     System.out.print(q.data + " ");
                     if(q.rightChild != null) {
