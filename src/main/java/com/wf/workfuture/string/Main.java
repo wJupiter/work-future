@@ -1,6 +1,6 @@
 package com.wf.workfuture.string;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by wangfeng 15:45 2020/6/18
@@ -91,4 +91,28 @@ public class Main {
 //        System.out.println(sb.toString());
         return maxLength;
     }
+
+
+    public static List<String> function(List<String> source) {
+        if(source == null || source.size() == 0) {
+            return new ArrayList<>();
+        }
+
+        Map<String, String> map = new HashMap<>();
+        for(String str: source) {
+            StringBuilder sb = new StringBuilder("");
+            for (int i = 0; i < str.length(); i++) {
+                //1、 截取字符串的数字串部分
+                Character p = str.charAt(i);
+                if(Character.isDigit(str.charAt(i))){
+                    sb.append(p);
+                }
+            }
+            //2、数字串入map key，全串入map value
+            map.put(sb.toString(), str);
+        }
+        //3、返回数字串的List部分
+        return new ArrayList<>(map.keySet());
+    }
+
 }

@@ -6,9 +6,12 @@ package com.wf.workfuture;
 public class IntergerTest {
 
     public static void main(String[] args) {
-        Integer a = 1;
-        int b;
-        b = a;
-
+//        Integer a = 1;
+//        int b;
+//        b = a;
+        String a = "";
+        String b = new String("");
+        System.out.println(a == b);
+        
     }
 }
